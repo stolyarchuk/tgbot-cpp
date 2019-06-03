@@ -19,45 +19,50 @@ namespace TgBot {
  */
 class InlineQueryResultContact : public InlineQueryResult {
 public:
-	static const std::string TYPE;
+    static const std::string TYPE;
 
-	typedef std::shared_ptr<InlineQueryResultContact> Ptr;
+    typedef std::shared_ptr<InlineQueryResultContact> Ptr;
 
-	InlineQueryResultContact() {
-		this->type = TYPE;
-		this->thumbHeight = 0;
-		this->thumbWidth = 0;
-	}
+    InlineQueryResultContact() {
+        this->type = TYPE;
+        this->thumbHeight = 0;
+        this->thumbWidth = 0;
+    }
 
-	/**
-	 * @brief Contact's phone number
-	 */
-	std::string phoneNumber;
+    /**
+     * @brief Contact's phone number
+     */
+    std::string phoneNumber;
 
-	/**
-	 * @brief Contact's first name
-	 */
-	std::string firstName;
+    /**
+     * @brief Contact's first name
+     */
+    std::string firstName;
 
-	/**
-	 * @brief Optional. Contact's last name
-	 */
-	std::string lastName;
+    /**
+     * @brief Optional. Contact's last name
+     */
+    std::string lastName;
 
-	/**
-	* @brief Optional. Url of the thumbnail for the result
-	*/
-	std::string thumbUrl;
+    /**
+     * @brief Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes
+     */
+    std::string vcard;
 
-	/**
-	* @brief Optional. Thumbnail width.
-	*/
-	int32_t thumbWidth;
+    /**
+    * @brief Optional. Url of the thumbnail for the result
+    */
+    std::string thumbUrl;
 
-	/**
-	* @brief Optinal. Thumbnail height
-	*/
-	int32_t thumbHeight;
+    /**
+    * @brief Optional. Thumbnail width.
+    */
+    int32_t thumbWidth;
+
+    /**
+    * @brief Optinal. Thumbnail height
+    */
+    int32_t thumbHeight;
 };
 }
 

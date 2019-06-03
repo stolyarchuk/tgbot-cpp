@@ -1,11 +1,10 @@
 # tgbot-cpp
 
-[![Build Status](https://travis-ci.org/reo7sp/tgbot-cpp.svg?branch=master)](https://travis-ci.org/reo7sp/tgbot-cpp)
+[![Travis build Status](https://travis-ci.org/reo7sp/tgbot-cpp.svg?branch=master)](https://travis-ci.org/reo7sp/tgbot-cpp)
+[![Appveyor build status](https://ci.appveyor.com/api/projects/status/tncys4p1flm8817m?svg=true)](https://ci.appveyor.com/project/reo7sp/tgbot-cpp)
 [![Docker Hub pulls](https://img.shields.io/docker/pulls/reo7sp/tgbot-cpp.svg)](https://hub.docker.com/r/reo7sp/tgbot-cpp/)
-
-[![Contact @reo7sp](https://img.shields.io/badge/telegram-contact-green.svg)](https://t.me/reo7sp)
-[![Donate using PayPal](https://img.shields.io/badge/donate-PayPal-brightgreen.svg)](https://paypal.me/reo7sp)
-[![Donate using Rocketbank](https://img.shields.io/badge/donate-Rocketbank-brightgreen.svg)](https://rocketbank.ru/reo7sp)
+[![Open documentation](https://img.shields.io/badge/open-documentation-orange.svg)](http://reo7sp.github.io/tgbot-cpp)
+[![Donate using PayPal](https://img.shields.io/badge/donate-PayPal-orange.svg)](https://paypal.me/reo7sp)
 
 ---
 
@@ -17,61 +16,14 @@ C++ library for Telegram bot API.
 
 Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
+
 ## State
 
-- [x] Bot API 3.0 
-- [x] Bot API 3.1
-- [x] Bot API 3.2
-- [x] Bot API 3.3
-- [x] Bot API 3.4
-- [x] Bot API 3.5
-- [x] Bot API 3.6
+- [x] Bot API 3.0 ~ 3.6
+- [x] Bot API 4.0 (Implemented all APIs except 'Telegram Passport')
 
-## Library compilation
 
-Firstly you need to install some dependencies such as Boost and build tools such as CMake. On Debian-based distibutives you can do it with these commands:
-```sh
-sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev
-```
-
-To compile the library execute this commands:
-```sh
-cd /path/where/you/have/cloned/the/library/repository
-cmake .
-make -j4
-sudo make install
-```
-
-## Bot compilation
-
-### With CMake
-[Example CMakeLists.txt](samples/echobot/CMakeLists.txt)
-
-### Without CMake
-```sh
-g++ telegram_bot.cpp -o telegram_bot --std=c++11 -I/usr/local/include -lTgBot -lboost_system -lssl -lcrypto -lpthread
-```
-
-### Options available when compiling bot
-
-#### With CMake
-```
-add_definitions(-DTGBOT_DISABLE_NAGLES_ALGORITHM) # Disable 'Nagle's algorithm'
-add_definitions(-DTGBOT_CHANGE_SOCKET_BUFFER_SIZE) # Socket Buffer Size Expansion
-add_definitions(-DTGBOT_CHANGE_READ_BUFFER_SIZE) # Read Buffer Size Expansion
-```
-
-#### Without CMake
-```
--DTGBOT_DISABLE_NAGLES_ALGORITHM
--DTGBOT_CHANGE_SOCKET_BUFFER_SIZE
--DTGBOT_CHANGE_READ_BUFFER_SIZE
-```
-
-### Also
-You can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
-
-## Samples
+## Sample
 
 Simple echo bot which sends everything it receives:
 ```cpp
@@ -104,10 +56,72 @@ int main() {
 }
 ```
 
-All samples are located [here](samples).
+All other samples are located [here](samples).
+
+
+## Dependencies
+
+Firstly you need to install some dependencies such as Boost and build tools such as CMake. On Debian-based distibutives you can do it with these commands:
+```sh
+sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev zlib1g-dev
+```
+If you want to use curl-based http client `CurlHttpClient`, you also need to install `libcurl4-openssl-dev` package.
+
+## Library installation
+
+If you want to install the library system-wide:
+```sh
+git clone https://github.com/reo7sp/tgbot-cpp
+cd tgbot-cpp
+cmake .
+make -j4
+sudo make install
+```
+
+Or you can treat this repository as a submodule of your project, for example, see [echobot-submodule](samples/echobot-submodule/CMakeLists.txt)
+
+## Specific library installation notes
+
+### Docker
+You can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
+
+### Conan
+You can use Conan C/C++ Package Manager. Follow [Conan instructions](https://docs.conan.io/en/latest/getting_started.html) and use [the template](https://github.com/reo7sp/tgbot-cpp/tree/master/samples/echobot-conan).
+
+### Arch Linux
+A PKGBUILD compiles shared library with header files is hosted on [Arch Linux User Repository](https://aur.archlinux.org/packages/libtgbot-cpp-git/).
+
+
+## Bot compilation
+
+### With CMake
+[Example CMakeLists.txt](samples/echobot/CMakeLists.txt)
+
+### Without CMake
+```sh
+g++ telegram_bot.cpp -o telegram_bot --std=c++11 -I/usr/local/include -lTgBot -lboost_system -lssl -lcrypto -lpthread
+```
+
+### Options available when compiling bot
+
+#### With CMake
+```
+add_definitions(-DTGBOT_DISABLE_NAGLES_ALGORITHM) # Disable 'Nagle's algorithm'
+add_definitions(-DTGBOT_CHANGE_SOCKET_BUFFER_SIZE) # Socket Buffer Size Expansion
+add_definitions(-DTGBOT_CHANGE_READ_BUFFER_SIZE) # Read Buffer Size Expansion
+```
+
+#### Without CMake
+```
+-DTGBOT_DISABLE_NAGLES_ALGORITHM
+-DTGBOT_CHANGE_SOCKET_BUFFER_SIZE
+-DTGBOT_CHANGE_READ_BUFFER_SIZE
+```
+
 
 ## Feedback
 Feel free to [create new issues on GitHub](https://github.com/reo7sp/tgbot-cpp/issues) or [contact me on Telegram](https://t.me/reo7sp).
+
 
 ## Licence
 [The MIT License](http://opensource.org/licenses/MIT).

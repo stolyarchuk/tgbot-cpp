@@ -19,27 +19,32 @@ namespace TgBot {
  */
 class Venue {
 public:
-	typedef std::shared_ptr<Venue> Ptr;
+    typedef std::shared_ptr<Venue> Ptr;
 
-	/**
-	 * @brief Venue location.
-	 */
-	Location::Ptr location;
+    /**
+     * @brief Venue location.
+     */
+    Location::Ptr location;
 
-	/**
-	 * @brief Name of the venue.
-	 */
-	std::string title;
+    /**
+     * @brief Name of the venue.
+     */
+    std::string title;
 
-	/**
-	 * @brief Address of the venue.
-	 */
-	std::string address;
+    /**
+     * @brief Address of the venue.
+     */
+    std::string address;
 
-	/**
-	 * @brief Optional. Foursquare identifier of the venue.
-	 */
-	std::string foursquare_id;
+    /**
+     * @brief Optional. Foursquare identifier of the venue.
+     */
+    std::string foursquareId;
+
+    /**
+     * @brief Optional. Foursquare type of the venue. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
+     */
+    std::string foursquareType;
 };
 }
 
