@@ -41,7 +41,7 @@ public:
     TgWebhookServer(const typename boost::asio::basic_socket_acceptor<Protocol>::endpoint_type& endpoint, std::string path, const EventHandler& eventHandler)
             : HttpServer<Protocol>(endpoint,
                                    [this](const std::string& _1, const std::unordered_map<std::string, std::string>& _2) { return _handle(_1, _2); }),
-              _path(std::move(path)), _eventHandler(eventHandler), _tgTypeParser()
+              _eventHandler(eventHandler), _path(std::move(path)), _tgTypeParser()
     {
     }
 
